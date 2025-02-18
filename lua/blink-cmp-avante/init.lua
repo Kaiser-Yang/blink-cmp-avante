@@ -99,6 +99,7 @@ function AvanteSource:get_completions(context, callback)
                     newText = feature.get_insert_text(item),
                     range = get_text_edit_range(context),
                 },
+                ---@diagnostic disable-next-line: undefined-field
                 callback = item.callback,
             }
         end
