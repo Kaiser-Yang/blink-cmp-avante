@@ -59,6 +59,41 @@ Customize the `BlinkCmpKindAvante` to customize the highlight for kind icon, her
 vim.api.nvim_set_hl(0, 'BlinkCmpKindAvante', { default = false, fg = '#89b4fa' })
 ```
 
+### How to customize different icons for mention and command
+
+Firstly, you need to customize the `get_kind_name`, here is an example:
+
+```lua
+avante = {
+    command = {
+        get_kind_name = function(_)
+            return 'AvanteCmd'
+        end
+    },
+    mention = {
+        get_kind_name = function(_)
+            return 'AvanteMention'
+        end
+    }
+}
+```
+
+Then, you should customize the `kind_icons`:
+
+```lua
+kind_icons = {
+    AvanteCmd = '',
+    AvanteMention = '',
+}
+```
+
+Maybe, you want to customize the highlight for icons:
+
+```lua
+vim.api.nvim_set_hl(0, 'BlinkCmpKindAvanteCmd', { default = false, fg = '#89b4fa' })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindAvanteMention', { default = false, fg = '#89b4fa' })
+```
+
 ## Version Introduction
 
 The release versions are something like `major.minor.patch`. When one of these numbers is increased:
