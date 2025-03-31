@@ -1,6 +1,6 @@
 # blink-cmp-avante
 
-Avante source for [blink.cmp](https://github.com/Saghen/blink.cmp)
+[Avante](https://github.com/yetone/avante.nvim) source for [blink.cmp](https://github.com/Saghen/blink.cmp)
 
 Use `@` to trigger the mention completion:
 
