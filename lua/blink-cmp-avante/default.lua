@@ -25,11 +25,10 @@ local function default_mention_get_items()
 end
 
 local function default_command_get_items()
-    local side_bar, _, _ = require('avante').get()
-    local items = side_bar:get_commands()
+    local items = require("avante.utils").get_commands()
     -- clear the callback
     for _, item in ipairs(items) do
-        item.callback  = nil
+        item.callback = nil
     end
     return items
 end
@@ -43,7 +42,7 @@ local function default_mention_get_label(item)
 end
 
 local function default_command_get_label(item)
-    return '/' .. item.command
+    return '/' .. item.name
 end
 
 --- @type blink-cmp-avante.Options
