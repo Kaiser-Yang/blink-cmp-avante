@@ -114,16 +114,13 @@ end
 
 --- @param item blink.cmp.CompletionItem
 --- @param callback fun()
-function AvanteSource:execute(_, item, callback)
+function AvanteSource:execute(_, item, callback, default_implementation)
     ---@diagnostic disable-next-line: undefined-field
     if item.callback and type(item.callback) == 'function' then
         ---@diagnostic disable-next-line: undefined-field
         item.callback()
-        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-        local new_line = vim.api.nvim_get_current_line():gsub(vim.pesc(item.textEdit.newText), '')
-        vim.api.nvim_buf_set_lines(0, row - 1, row, false, { new_line })
-        local new_col = math.min(col, #new_line)
-        vim.api.nvim_win_set_cursor(0, { row, new_col })
+    else
+      default_implementation()
     end
     callback()
 end
