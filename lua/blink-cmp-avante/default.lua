@@ -21,6 +21,12 @@ local function default_mention_get_items()
         details = "add files in quickfix list to chat context",
         callback = function() side_bar.file_selector:add_quickfix_files() end,
     })
+    table.insert(items, {
+        description = "buffers",
+        command = "buffers",
+        details = "add open buffers to the chat context",
+        callback = function() side_bar.file_selector:add_buffer_files() end,
+    })
     return items
 end
 
