@@ -13,9 +13,7 @@ function AvanteSource.new(opts, _)
     local completion_item_kind = require('blink.cmp.types').CompletionItemKind
     local blink_kind_icons = require('blink.cmp.config').appearance.kind_icons
     for kind_name, icon in pairs(self.avante_source_config.kind_icons) do
-        if completion_item_kind[kind_name] then
-            goto continue
-        end
+        if completion_item_kind[kind_name] then goto continue end
         completion_item_kind[#completion_item_kind + 1] = kind_name
         completion_item_kind[kind_name] = #completion_item_kind
         blink_kind_icons[kind_name] = icon
@@ -43,9 +41,7 @@ function AvanteSource:get_enabled_features()
     --- @type blink-cmp-avante.AvanteOptions[]
     local features = {}
     for _, feature in pairs(vim.tbl_values(self.avante_source_config.avante)) do
-        if untils.get_option(feature.enable) then
-            table.insert(features, feature)
-        end
+        if untils.get_option(feature.enable) then table.insert(features, feature) end
     end
     return features
 end
@@ -56,8 +52,8 @@ end
 
 --- @param context blink.cmp.Context
 function AvanteSource:should_show_items(context, _)
-    return context.mode ~= 'cmdline' and
-        vim.tbl_contains(self:get_trigger_characters(), context.trigger.initial_character)
+    return context.mode ~= 'cmdline'
+        and vim.tbl_contains(self:get_trigger_characters(), context.trigger.initial_character)
 end
 
 --- @param context blink.cmp.Context
@@ -67,12 +63,12 @@ local function get_text_edit_range(context)
         -- This range make it possible to remove the trigger character
         start = {
             line = context.cursor[1] - 1,
-            character = context.cursor[2] - 1
+            character = context.cursor[2] - 1,
         },
         ['end'] = {
             line = context.cursor[1] - 1,
-            character = context.cursor[2]
-        }
+            character = context.cursor[2],
+        },
     }
 end
 
@@ -120,7 +116,7 @@ function AvanteSource:execute(_, item, callback, default_implementation)
         ---@diagnostic disable-next-line: undefined-field
         item.callback()
     else
-      default_implementation()
+        default_implementation()
     end
     callback()
 end
